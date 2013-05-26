@@ -1,16 +1,5 @@
-class MatchArchiveScreen < ProMotion::GroupedTableScreen
+class MatchArchiveScreen < BaseTableScreen
   title "Match Archives"
-
-  def show_loading
-    @indicator = UIActivityIndicatorView.alloc.initWithActivityIndicatorStyle(UIActivityIndicatorViewStyleWhiteLarge)
-    @indicator.center = view.center
-    view.addSubview @indicator
-
-    @indicator.hidesWhenStopped = true
-    @indicator.startAnimating
-
-  end
-
 
   def fetch_matches
     html = ''
@@ -42,8 +31,6 @@ class MatchArchiveScreen < ProMotion::GroupedTableScreen
       ]
 
       update_table_data
-
-      @indicator.stopAnimating
     end
 
   end
@@ -75,7 +62,7 @@ class MatchArchiveScreen < ProMotion::GroupedTableScreen
     href  = args[:href]
     title = args[:title]
     
-    open MatchScreen.new
+    open MatchScreen.new(match_title: title)
   end
 
   def on_appear

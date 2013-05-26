@@ -1,11 +1,12 @@
-class MatchScreen < ProMotion::GroupedTableScreen
+class MatchScreen < BaseTableScreen
   title "Match"
 
   attr_accessor :href
   attr_accessor :match_title
 
-  def on_load(args)
-    PM.logger.info args
+  def on_load
+    PM.logger.info match_title
+    self.title = match_title
   end
 
   def will_appear

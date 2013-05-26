@@ -1,4 +1,4 @@
-class HomeScreen < ProMotion::GroupedTableScreen
+class HomeScreen < BaseTableScreen
   title "Topcoder"
 
   def on_load
