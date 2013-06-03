@@ -5,11 +5,9 @@ class MatchArchiveScreen < BaseTableScreen
     html = ''
     @matches = []
 
-    PM.logger.info "Start HTTP request"
 
     BW::HTTP.get("http://community.topcoder.com/tc?module=MatchList") do |response| 
       html = response.body.to_str
-      PM.logger.info "Done http"
 
       lines = html.split "\n"
       lines.each do |line|
@@ -31,15 +29,14 @@ class MatchArchiveScreen < BaseTableScreen
       ]
 
       update_table_data
+      hide_loading
     end
 
   end
 
   def on_load
-    PM.logger.info "Started loading"
     show_loading
     fetch_matches
-    PM.logger.info "Done loading"
   end
 
   def will_appear
@@ -62,7 +59,7 @@ class MatchArchiveScreen < BaseTableScreen
     href  = args[:href]
     title = args[:title]
     
-    open MatchScreen.new(match_title: title)
+    open MatchScreen.new(match_title: title, href: href)
   end
 
   def on_appear
